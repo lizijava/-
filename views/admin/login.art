@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="/admin/lib/bootstrap/css/bootstrap.min.css">  <!--静态资源是浏览器解析的  -->
+    <link rel="stylesheet" href="/admin/css/base.css">
+</head>
+
+<body>
+    <div class="login-body">
+        <div class="login-container">
+            <h4 class="title">博客管理员登录</h4>
+            <div class="login">
+                <form action="/admin/login" method="post" id="loginForm">  <!--请求地址  请求方式  给表单一个id下面能通过 {{$loginForm}} 来获取表单-->
+                    <div class="form-group">
+                        <label>邮件</label>
+                        <input name="email" type="email" class="form-control" placeholder="请输入邮件地址">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input name="password" type="password" class="form-control" placeholder="请输入密码">
+                    </div>
+                    <button type="submit" class="btn btn-primary">登录</button>
+                </form>
+            </div>
+            <div class="tips"></div>
+        </div>
+    </div>
+    <script src="/admin/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin/js/common.js"></script>   <!--admin代表服务器的根目录-->
+    <script type="text/javascript">   //这前端JavaScript代码
+    
+    $('#loginForm').on('submit', function () {  //$('#loginForm')获取表单 #后接ID   提交事件'submit'
+    var result =  serializeToJson ($(this))                             //var是局部
+
+    //trim(); 去空格  
+    if(result.email.trim().length == 0) {
+        alert('请输入邮箱地址');
+        return false;//阻止表单默认提交行为（也就是点提交后没反应）  return 只能阻止表单向下执行 不能阻止表单提交   而return false都可以
+    }
+    if(result.password.trim().length == 0) {
+        alert('请输入密码'); 
+        return false;
+    }
+    });
+  
+    
+    </script>
+</body>
+</html>
